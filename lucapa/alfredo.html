@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <h1>
+       MY CLASSMATES 
+   </h1>
+  <title>assignment</title>
+  <style>
+ 
+    h1 {
+      padding: 10px;
+      display: inline-block;
+      text-align:center;
+      color: rgb(194, 211, 211);
+      background-color: #000000;
+    }
+  .additionalOutput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family:Fantasy;
+  }
+  .additionalOutput img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 5px;
+  }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #000000;
+    }
+    .button {
+      padding: 10px;
+      background-color: #0e0f10;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin: 20px;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #433e3e;
+    }
+
+    .output, .hiddenOutput {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .output img, .hiddenOutput img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 5px;
+    }
+    .hiddenOutput {
+      visibility: hidden;
+      align-items: up;
+    }
+    .additionalOutput {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .additionalOutput img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 5px;
+    }
+    body {
+    background-attachment: fixed;
+    background-image: url('oo.jpeg');
+    background-size:cover;    
+   text-align: center;
+   color: #000000;
+   background-color: #08e88b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <div class="hiddenOutput" id="hiddenOutput"></div>
+  <button class="button" id="boysButton">Boys</button>
+  <div class="output" id="output"></div>
+  <button class="button" id="girlsButton">Girls</button>
+</div>
+<script>
+   
+  var allImages = [
+    { src: "Jerico.jpg", gender: "boy", name: "JERICO HERBON " },
+    { src: "Leode.jpg", gender: "boy", name: "LEODE QUILICOL " },
+    { src: "Angelo.jpg", gender: "boy", name: "ANGELO ACUPIADO " },
+    { src: "patrick.jpg", gender: "boy", name: "PATRICK LIBANAN" },
+    { src: "cedrick.jpg", gender: "boy", name: "CEDRICK GAYO" },
+    { src: "Hya.jpg", gender: "girl", name: "HYACINTH BALADAD"},
+    { src: "jane.jpg", gender: "girl", name:"MARY YULAS"},
+    { src: "Je ann.jpg", gender: "girl", name: " JE ANN ORGA"},
+    { src: "Joana.jpg", gender: "girl", name: "JOANA RAVAS  " },
+    { src: "Mary ann.jpg", gender: "girl", name: "MARY ANN SUGALAN" }
+  ];
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  shuffleArray(allImages);
+
+  var outputDiv = document.getElementById("output");
+  var boysButton = document.getElementById("boysButton");
+  var girlsButton = document.getElementById("girlsButton");
+
+  boysButton.addEventListener("click", function() {
+    displayImage("boy");
+  });
+
+  girlsButton.addEventListener("click", function() {
+    displayImage("girl");
+  });
+
+  function displayImage(gender) {
+    
+    outputDiv.innerHTML = "";
+
+   
+    for (var i = 0; i < allImages.length; i++) {
+      if (allImages[i].gender === gender) {
+        var imageDiv = document.createElement("div");
+        var image = document.createElement("img");
+        var name = document.createElement("p");
+        
+        image.src = allImages[i].src;
+        name.textContent = allImages[i].name;
+
+        imageDiv.appendChild(image);
+        imageDiv.appendChild(name);
+        outputDiv.appendChild(imageDiv);
+
+     
+        allImages.push(allImages.splice(i, 1)[0]);
+        break;
+      }
+    }
+  }
+</script>
+</body>
+</html>
+
